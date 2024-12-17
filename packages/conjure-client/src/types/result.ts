@@ -15,18 +15,18 @@
  * limitations under the License.
  */
 
-export interface Success<T> {
+export interface ISuccess<T> {
   readonly status: "success";
   readonly response: T;
 };
 
-export interface Failure<E> {
+export interface IFailure<E> {
   readonly status: "failure";
   readonly error: E;
 };
 
-export type Result<T, E> = Success<T> | Failure<E>;
+export type Result<T, E> = ISuccess<T> | IFailure<E>;
 
-export const isSuccess = <T, E>(result: Result<T, E>): result is Success<T> => result.status === "success";
+export const isSuccess = <T, E>(result: Result<T, E>): result is ISuccess<T> => result.status === "success";
 
-export const isFailure = <T, E>(result: Result<T, E>): result is Failure<E> => result.status === "failure";
+export const isFailure = <T, E>(result: Result<T, E>): result is IFailure<E> => result.status === "failure";
