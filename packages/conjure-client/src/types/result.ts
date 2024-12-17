@@ -15,12 +15,12 @@
  * limitations under the License.
  */
 
-export type Success<T> = {
+export interface Success<T> {
   readonly status: "success";
   readonly response: T;
 };
 
-export type Failure<E> = {
+export interface Failure<E> {
   readonly status: "failure";
   readonly error: E;
 };
