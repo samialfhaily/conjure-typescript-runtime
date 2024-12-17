@@ -15,18 +15,20 @@
  * limitations under the License.
  */
 
-export interface ISuccess<T> {
+// tslint:disable-next-line:interface-over-type-literal
+export type Success<T> = {
     readonly status: "success";
     readonly response: T;
-}
+};
 
-export interface IFailure<E> {
+// tslint:disable-next-line:interface-over-type-literal
+export type Failure<E> = {
     readonly status: "failure";
     readonly error: E;
-}
+};
 
-export type Result<T, E> = ISuccess<T> | IFailure<E>;
+export type Result<T, E> = Success<T> | Failure<E>;
 
-export const isSuccess = <T, E>(result: Result<T, E>): result is ISuccess<T> => result.status === "success";
+export const isSuccess = <T, E>(result: Result<T, E>): result is Success<T> => result.status === "success";
 
-export const isFailure = <T, E>(result: Result<T, E>): result is IFailure<E> => result.status === "failure";
+export const isFailure = <T, E>(result: Result<T, E>): result is Failure<E> => result.status === "failure";
