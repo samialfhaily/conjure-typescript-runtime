@@ -16,14 +16,14 @@
  */
 
 export interface ISuccess<T> {
-  readonly status: "success";
-  readonly response: T;
-};
+    readonly status: "success";
+    readonly response: T;
+}
 
 export interface IFailure<E> {
-  readonly status: "failure";
-  readonly error: E;
-};
+    readonly status: "failure";
+    readonly error: E;
+}
 
 export type Result<T, E> = ISuccess<T> | IFailure<E>;
 
