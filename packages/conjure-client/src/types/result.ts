@@ -1,6 +1,6 @@
 /**
  * @license
- * Copyright 2018 Palantir Technologies, Inc.
+ * Copyright 2024 Palantir Technologies, Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,9 +15,18 @@
  * limitations under the License.
  */
 
-export * from "./errors";
-export * from "./fetchBridge";
-export { FetchBridge as DefaultHttpApiBridge } from "./fetchBridge";
-export * from "./httpApiBridge";
-export * from "./types/result";
-export { IUserAgent } from "./userAgent";
+export type Success<T> = {
+  readonly status: "success";
+  readonly response: T;
+};
+
+export type Failure<E> = {
+  readonly status: "failure";
+  readonly error: E;
+};
+
+export type Result<T, E> = Success<T> | Failure<E>;
+
+export const isSuccess = <T, E>(result: Result<T, E>): result is Success<T> => result.status === "success";
+
+export const isFailure = <T, E>(result: Result<T, E>): result is Failure<E> => result.status === "failure";
